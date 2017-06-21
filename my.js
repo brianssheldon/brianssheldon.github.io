@@ -22,7 +22,8 @@ $(document).ready(function() {
 
         map.addSource('eqid', {
             type: 'geojson',
-            data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
+            data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson'
+            // data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
         });
 
         map.addLayer({
