@@ -1,4 +1,3 @@
-
 mapboxgl.accessToken = 'pk.eyJ1Ijoib2tpZWJ1YmJhIiwiYSI6ImNpdHZscGs3ajAwNXYyb284bW4ydWUzbGsifQ.1PoNrSP0F65WolWgqKhV4g';
 
 var map;
@@ -8,8 +7,8 @@ var lonlat = [-97.50732685771766, 35.47461778676444];
 var dragAndDropped = false;
 
 $(document).ready(function() {
-
-  console.log('in ready');
+    console.log('in ready');
+    hellothere();
 
     map = new mapboxgl.Map({
         container: 'map', // container id
@@ -18,6 +17,40 @@ $(document).ready(function() {
         zoom: 10.14 // starting zoom
     });
 
+    map.on('load', function(e) {
+        console.log('map has finished loading...');
+
+        map.addSource('eqid', {
+            type: 'geojson',
+            data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
+        });
+
+        map.addLayer({
+            "id": "eqidlayer",
+            "type": "circle",
+            "source": "eqid",
+            "paint": {
+                "circle-radius": 15,
+                "circle-color": "lightgreen"
+            }
+        });
+
+        map.addLayer({ // shows the names of the child and parent on the line like street names on google maps
+            "id": "symbols",
+            "type": "symbol",
+            "source": "eqid",
+            // "minzoom": 12,
+            "layout": {
+                "symbol-placement": "point",
+                'text-rotation-alignment': 'map',
+                'text-keep-upright': false, // at least this keeps the site names pointing to the correct ones.
+                "text-font": ["Open Sans Regular"],
+                "text-field": "{title}",
+                "text-size": 14
+            }
+        });
+
+    });
     map.on('rotate', function(e) {
         dragAndDropped = true;
     });
@@ -33,7 +66,7 @@ $(document).ready(function() {
             // console.log('bailing');
             return;
         }
-          console.log('mouseup',e.originalEvent.which);
+        console.log('mouseup', e.originalEvent.which);
         // console.log(e.originalEvent.which);
         // if (e.originalEvent.which == 1) { // left click
         //     // createMarker(e.lngLat.lng, e.lngLat.lat);
@@ -50,7 +83,7 @@ $(document).ready(function() {
             // console.log('bailing');
             return;
         }
-          console.log('clickkkk',e.originalEvent.which);
+        console.log('clickkkk', e.originalEvent.which);
         // console.log(e.originalEvent.which);
         // if (e.originalEvent.which == 1) { // left click
         //     // createMarker(e.lngLat.lng, e.lngLat.lat);
@@ -163,4 +196,12 @@ function flytolocation() {
         bearing: 0,
         zoom: 10.14
     });
+}
+
+function hellothere() {
+    console.log('-------------------------------');
+    console.log('---                         ---');
+    console.log('---       Hello there       ---');
+    console.log('---                         ---');
+    console.log('-------------------------------');
 }
