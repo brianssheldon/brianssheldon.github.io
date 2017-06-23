@@ -323,7 +323,6 @@ function doSpinnyThing() {
 
 function addTriangle() {
     var lnglat = map.getCenter();
-    [0, 0, 0, 1]
     console.log(lnglat);
 
     var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
@@ -358,7 +357,10 @@ function addTriangle() {
         }
     });
     doSpinnyThing();
-    drawBuilding();
+    drawBuilding(-97.47823091415519, 35.5803942751275);
+    drawBuilding(-97.56932968086862, 35.52934262490645);
+    drawBuilding(-97.4297454357804, 35.332845123425);
+    drawBuilding(-97.73882483561242, 35.37299595493684);
 }
 
 var colors = [
@@ -376,49 +378,44 @@ var colors = [
 
 
 
-function drawBuilding() {
+function drawBuilding(lngg, latt) {
 
-    // -97.40668910960215, 35.55317399595501
+    var newLngLat = ruler.destination([lngg, latt], 0.1, 90);
+    var newLngLat2 = ruler.destination(newLngLat, 0.1, 180);
+    var newLngLat3 = ruler.destination(newLngLat2, 0.1, 270);
+
+    console.log('4',lngg, latt);
+    console.log('1',newLngLat);
+    console.log('2',newLngLat2);
+    console.log('3',newLngLat3);
+    console.log('4',lngg, latt);
 
     map.addLayer({
-        'id': 'room-extrusion',
+        'id': 'room-extrusion' + lngg + '' + latt,
         'type': 'fill-extrusion',
         'source': {
             'type': 'geojson',
-            'data':
-            {
-              "features": [
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "level": 1,
-                    "name": "towerr",
-                    "height": 11600,
-                    "base_height": 0,
-                    "color": "red"
-                  },
-                  "geometry": {
-                    "coordinates": [
-                      [
-                        [
-                          -97.47823091415519, 35.5803942751275
+            'data': {
+                "features": [{
+                    "type": "Feature",
+                    "properties": {
+                        "level": 1,
+                        "name": "towerr",
+                        "height": 11600,
+                        "base_height": 0,
+                        "color": "red"
+                    },
+                    "geometry": {
+                        "coordinates": [
+                            [
+                                [lngg,latt],newLngLat,newLngLat2,newLngLat3,[lngg,latt]
+                            ]
                         ],
-                        [
-                         -97.47839549428362, 35.58482256529528
-                        ],
-                        [
-                          -97.47308894946518, 35.58043434065526
-                        ],
-                        [
-                         -97.47823091415519, 35.5803942751275
-                        ]
-                      ]
-                    ],
-                    "type": "Polygon"
-                  },
-                  "id": "08a10ab2bf15c4d14669b588062f7f08"
-                }              ],
-              "type": "FeatureCollection"
+                        "type": "Polygon"
+                    },
+                    "id": "08a10ab2bf15c4d14669b588062f7f08"
+                }],
+                "type": "FeatureCollection"
             }
 
         },
