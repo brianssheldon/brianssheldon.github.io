@@ -266,10 +266,12 @@ var stopSweep = false;
 
 function doStopSweep() {
     if (stopSweep) {
+        $('#stopSweep').text('Stop Sweep');
         stopSweep = false;
         sweepDirectionClockWise = !sweepDirectionClockWise;
         doSpinnyThing()
     } else {
+        $('#stopSweep').text('Start Sweep');
         stopSweep = true;
     }
 
@@ -282,7 +284,7 @@ function doSpinnyThing() {
     if (stopSweep) return;
 
     var lnglat = map.getCenter();
-    console.log(sweepDirectionClockWise);
+
     if(sweepDirectionClockWise) {
         leftBearing += 10;
         if (leftBearing > 360) {
@@ -299,7 +301,6 @@ function doSpinnyThing() {
     var newLngLat2 = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing + 10);
 
     map.getSource('triangle').setData({
-
         'type': 'Feature',
         'geometry': {
             'type': 'Polygon',
@@ -314,11 +315,14 @@ function doSpinnyThing() {
     });
 
     window.setTimeout(doSpinnyThing, 100);
+
+    var randomnumber = Math.floor(Math.random()*10)
+    map.setPaintProperty('triangle', 'fill-color', colors[randomnumber]);
 }
 
 
 function addTriangle() {
-    var lnglat = map.getCenter();
+    var lnglat = map.getCenter(); [0, 0, 0, 1]
     console.log(lnglat);
 
     var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
@@ -348,8 +352,22 @@ function addTriangle() {
         'layout': {},
         'paint': {
             'fill-color': 'red',
-            'fill-opacity': 0.2
+            'fill-outline-color': 'black',
+            'fill-opacity': 0.5
         }
     });
     doSpinnyThing();
 }
+
+var colors = [
+    '#ffffcc',
+    '#a1dab4',
+    '#41b6c4',
+    '#2c7fb8',
+    '#253494',
+    '#fed976',
+    '#feb24c',
+    '#fd8d3c',
+    '#f03b20',
+    '#bd0026'
+];
