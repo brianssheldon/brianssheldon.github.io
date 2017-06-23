@@ -5,10 +5,14 @@ var kounter = 0;
 var markers = [];
 var lonlat = [-97.50732685771766, 35.47461778676444];
 var dragAndDropped = false;
+var miles = 10;
+var leftBearing = 3;
+var ruler;
 
 $(document).ready(function() {
     console.log('in ready');
     hellothere();
+    ruler = cheapRuler(35.05, 'miles');
 
     map = new mapboxgl.Map({
         container: 'map', // container id
@@ -20,36 +24,8 @@ $(document).ready(function() {
     map.on('load', function(e) {
         console.log('map has finished loading...');
 
-        map.addSource('eqid', {
-            type: 'geojson',
-            data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson'
-            // data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson'
-        });
-
-        map.addLayer({
-            "id": "eqidlayer",
-            "type": "circle",
-            "source": "eqid",
-            "paint": {
-                "circle-radius": 15,
-                "circle-color": "lightgreen"
-            }
-        });
-
-        map.addLayer({ // shows the names of the child and parent on the line like street names on google maps
-            "id": "symbols",
-            "type": "symbol",
-            "source": "eqid",
-            // "minzoom": 12,
-            "layout": {
-                "symbol-placement": "point",
-                'text-rotation-alignment': 'map',
-                'text-keep-upright': false, // at least this keeps the site names pointing to the correct ones.
-                "text-font": ["Open Sans Regular"],
-                "text-field": "{title}",
-                "text-size": 14
-            }
-        });
+        doPastMonth();
+        addTriangle();
 
     });
     map.on('rotate', function(e) {
@@ -61,6 +37,7 @@ $(document).ready(function() {
     });
 
     map.on('mouseup', function(e) {
+        console.log(e.lngLat.lng, e.lngLat.lat);
         closePopup();
         if (dragAndDropped) {
             dragAndDropped = false;
@@ -205,4 +182,174 @@ function hellothere() {
     console.log('---       Hello there       ---');
     console.log('---                         ---');
     console.log('-------------------------------');
+}
+
+function doPastHour() {
+    console.log('hour');
+    updateMap('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson');
+}
+
+
+function doPastDay() {
+    console.log('day');
+    updateMap('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson');
+}
+
+
+function doPastWeek() {
+    console.log('week');
+    updateMap('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson');
+}
+
+
+function doPastMonth() {
+    console.log('month');
+    updateMap('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson');
+}
+
+function updateMap(theurl) {
+    console.log('theurl: ', theurl);
+    try {
+        if (map.getSource('eqid')) {
+            map.removeSource('eqid');
+        }
+    } catch (e) {}
+    try {
+        if (map.getLayer('eqidlayer')) {
+            map.removeLayer('eqidlayer');
+        }
+    } catch (e) {}
+    try {
+        if (map.getLayer('symbols')) {
+            map.removeLayer('symbols');
+        }
+    } catch (e) {}
+
+    map.addSource('eqid', {
+        type: 'geojson', // see https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+        data: theurl
+    });
+
+    var aaaa = map.getSource('eqid');
+    console.log('aaaa', aaaa);
+    // howMany
+
+    map.addLayer({
+        "id": "eqidlayer",
+        "type": "circle",
+        "source": "eqid",
+        "paint": {
+            "circle-radius": 15,
+            "circle-color": "lightgreen"
+        }
+    });
+    var bbb = map.getLayer('eqidlayer');
+    console.log('bbb', bbb);
+
+    map.addLayer({ // shows the names of the child and parent on the line like street names on google maps
+        "id": "symbols",
+        "type": "symbol",
+        "source": "eqid",
+        // "minzoom": 12,
+        "layout": {
+            "symbol-placement": "point",
+            'text-rotation-alignment': 'map',
+            'text-keep-upright': false, // at least this keeps the site names pointing to the correct ones.
+            "text-font": ["Open Sans Regular"],
+            "text-field": "{title}",
+            "text-size": 14
+        }
+    });
+}
+
+var stopSweep = false;
+
+function doStopSweep() {
+    if (stopSweep) {
+        stopSweep = false;
+        sweepDirectionClockWise = !sweepDirectionClockWise;
+        doSpinnyThing()
+    } else {
+        stopSweep = true;
+    }
+
+}
+
+var bearingInterval = 10;
+var sweepDirectionClockWise = true;
+
+function doSpinnyThing() {
+    if (stopSweep) return;
+
+    var lnglat = map.getCenter();
+    console.log(sweepDirectionClockWise);
+    if(sweepDirectionClockWise) {
+        leftBearing += 10;
+        if (leftBearing > 360) {
+            leftBearing = 0;
+        }
+    }else{
+        leftBearing -= 10;
+        if (leftBearing < 0) {
+            leftBearing = 360;
+        }
+    }
+
+    var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
+    var newLngLat2 = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing + 10);
+
+    map.getSource('triangle').setData({
+
+        'type': 'Feature',
+        'geometry': {
+            'type': 'Polygon',
+            'coordinates': [
+                [
+                    [lnglat.lng, lnglat.lat],
+                    newLngLat,
+                    newLngLat2, [lnglat.lng, lnglat.lat],
+                ]
+            ]
+        }
+    });
+
+    window.setTimeout(doSpinnyThing, 100);
+}
+
+
+function addTriangle() {
+    var lnglat = map.getCenter();
+    console.log(lnglat);
+
+    var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
+    var newLngLat2 = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing + 5);
+
+    console.log('newLngLat', newLngLat);
+
+    map.addLayer({
+        'id': 'triangle',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                        [
+                            [lnglat.lng, lnglat.lat],
+                            newLngLat,
+                            newLngLat2, [lnglat.lng, lnglat.lat],
+                        ]
+                    ]
+                }
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': 'red',
+            'fill-opacity': 0.2
+        }
+    });
+    doSpinnyThing();
 }
