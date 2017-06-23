@@ -285,12 +285,12 @@ function doSpinnyThing() {
 
     var lnglat = map.getCenter();
 
-    if(sweepDirectionClockWise) {
+    if (sweepDirectionClockWise) {
         leftBearing += 10;
         if (leftBearing > 360) {
             leftBearing = 0;
         }
-    }else{
+    } else {
         leftBearing -= 10;
         if (leftBearing < 0) {
             leftBearing = 360;
@@ -316,13 +316,14 @@ function doSpinnyThing() {
 
     window.setTimeout(doSpinnyThing, 100);
 
-    var randomnumber = Math.floor(Math.random()*10)
+    var randomnumber = Math.floor(Math.random() * 10)
     map.setPaintProperty('triangle', 'fill-color', colors[randomnumber]);
 }
 
 
 function addTriangle() {
-    var lnglat = map.getCenter(); [0, 0, 0, 1]
+    var lnglat = map.getCenter();
+    [0, 0, 0, 1]
     console.log(lnglat);
 
     var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
@@ -357,6 +358,7 @@ function addTriangle() {
         }
     });
     doSpinnyThing();
+    drawBuilding();
 }
 
 var colors = [
@@ -371,3 +373,75 @@ var colors = [
     '#f03b20',
     '#bd0026'
 ];
+
+
+
+function drawBuilding() {
+
+    // -97.40668910960215, 35.55317399595501
+
+    map.addLayer({
+        'id': 'room-extrusion',
+        'type': 'fill-extrusion',
+        'source': {
+            'type': 'geojson',
+            'data':
+            {
+              "features": [
+                {
+                  "type": "Feature",
+                  "properties": {
+                    "level": 1,
+                    "name": "towerr",
+                    "height": 11600,
+                    "base_height": 0,
+                    "color": "red"
+                  },
+                  "geometry": {
+                    "coordinates": [
+                      [
+                        [
+                          -97.47823091415519, 35.5803942751275
+                        ],
+                        [
+                         -97.47839549428362, 35.58482256529528
+                        ],
+                        [
+                          -97.47308894946518, 35.58043434065526
+                        ],
+                        [
+                         -97.47823091415519, 35.5803942751275
+                        ]
+                      ]
+                    ],
+                    "type": "Polygon"
+                  },
+                  "id": "08a10ab2bf15c4d14669b588062f7f08"
+                }              ],
+              "type": "FeatureCollection"
+            }
+
+        },
+        'paint': {
+            // See the Mapbox Style Spec for details on property functions
+            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
+            'fill-extrusion-color': {
+                // Get the fill-extrusion-color from the source 'color' property.
+                'property': 'color',
+                'type': 'identity'
+            },
+            'fill-extrusion-height': {
+                // Get fill-extrusion-height from the source 'height' property.
+                'property': 'height',
+                'type': 'identity'
+            },
+            'fill-extrusion-base': {
+                // Get fill-extrusion-base from the source 'base_height' property.
+                'property': 'base_height',
+                'type': 'identity'
+            },
+            // Make extrusions slightly opaque for see through indoor walls.
+            'fill-extrusion-opacity': 1
+        }
+    });
+}
