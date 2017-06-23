@@ -361,14 +361,62 @@ function addTriangle() {
     drawBuilding(-97.56932968086862, 35.52934262490645);
     drawBuilding(-97.4297454357804, 35.332845123425);
     drawBuilding(-97.73882483561242, 35.37299595493684);
-    drawB();
+
+    drawS(bbb, 'idbbb');
+    drawS(sss, 'idssss');
+    drawS(sss2, 'idssss2');
 }
 
+var bbb = [
+    [-98.61366427972878, 36.93218754678894],
+    [-97.97763132645048, 36.911036061510146],
+    [-97.81624193314349, 36.70556239489642],
+    [-97.94588259333499, 36.588811923466665],
+    [-98.62583462741351, 36.57394007973569],
+    [-97.98027705420401, 36.56331558031347],
+    [-97.73951582813815, 36.36117261587896],
+    [-97.89925726009395, 36.180666969172464],
+    [-98.6850384045393, 36.15076392284173],
+    [-98.61366427972878, 36.93218754678894]
+];
 
-function drawB() {
+var sss = [
+    [-96.58952354177613, 36.8395258646125],
+    [-96.83205239933287, 36.98081091375451],
+    [-97.15773400804478, 36.795147239139624],
+    [-96.89095226473539, 36.58399766147852],
+    [-96.61377642752878, 36.35273852801181],
+    [-96.98796380775356, 36.199114843403834],
+    [-97.4106569594912, 36.4057382400116],
+    [-97.10922823653192, 36.3108711440553],
+    [-96.8181936074699, 36.44755459926873],
+    [-97.04686367316363, 36.572868471730615],
+    [-97.3309689062942, 36.77572350046444],
+    [-96.9844991097878, 36.98081091375451],
+    [-96.6310999173575, 36.809018323587836],
+    [-96.58952354177613, 36.8395258646125]
+];
+var sss2 = [
+    [-95.76369278221456, 36.89647758564284],
+    [-96.08463940342189, 37.0864765778481],
+    [-96.32251748737501, 36.902516592240545],
+    [-96.07708771821298, 36.61513650937147],
+    [-95.72230746199715, 36.39661631076254],
+    [-96.0432540832045, 36.19881192604862],
+    [-96.37175238963019, 36.405733629764654],
+    [-96.0337611681654, 36.175172588623354],
+    [-95.61338402508473, 36.4277412879559],
+    [-95.91922727587924, 36.54310196426461],
+    [-96.27038063790413, 36.81866136354378],
+    [-95.96453738710959, 37.03598602352001],
+    [-95.60960818248148, 36.827728922679086],
+    [-95.76369278221456, 36.89647758564284]
+];
+
+function drawS(sssx, idd) {
     console.log('drawB');
     map.addLayer({
-        'id': 'bbasdfbx',
+        'id': idd,
         'type': 'fill-extrusion',
         'source': {
             'type': 'geojson',
@@ -378,95 +426,13 @@ function drawB() {
                     "properties": {
                         "level": 1,
                         "name": "towerrx",
-                        "height": 111600,
+                        "height": 250000,
                         "base_height": 0,
                         "color": "red"
                     },
                     "geometry": {
                         "coordinates": [
-                            [
-                                [-98.61366427972878, 36.93218754678894],
-                                [-97.97763132645048, 36.911036061510146],
-                                [-97.81624193314349, 36.70556239489642],
-                                [-97.94588259333499, 36.588811923466665],
-                                [-98.62583462741351, 36.57394007973569],
-                                [-97.98027705420401, 36.56331558031347],
-                                [-97.73951582813815, 36.36117261587896],
-                                [-97.89925726009395, 36.180666969172464],
-                                [-98.6850384045393, 36.15076392284173],
-                                [-98.61366427972878, 36.93218754678894]
-                            ]
-                        ],
-                        "type": "Polygon"
-                    },
-                    "id": "08a10ab2bf15c4d14234rwecsdf2388062f7f08"
-                }],
-                "type": "FeatureCollection"
-            }
-
-        },
-        'paint': {
-            // See the Mapbox Style Spec for details on property functions
-            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
-            'fill-extrusion-color': {
-                // Get the fill-extrusion-color from the source 'color' property.
-                'property': 'color',
-                'type': 'identity'
-            },
-            'fill-extrusion-height': {
-                // Get fill-extrusion-height from the source 'height' property.
-                'property': 'height',
-                'type': 'identity'
-            },
-            'fill-extrusion-base': {
-                // Get fill-extrusion-base from the source 'base_height' property.
-                'property': 'base_height',
-                'type': 'identity'
-            },
-            // Make extrusions slightly opaque for see through indoor walls.
-            'fill-extrusion-opacity': 1
-        }
-    });
-    console.log('drawB2');
-    drawS();
-    drawS2();
-}
-
-function drawS2() {
-    console.log('drawB');
-    map.addLayer({
-        'id': 'bbssx2',
-        'type': 'fill-extrusion',
-        'source': {
-            'type': 'geojson',
-            'data': {
-                "features": [{
-                    "type": "Feature",
-                    "properties": {
-                        "level": 1,
-                        "name": "towerrx",
-                        "height": 111600,
-                        "base_height": 0,
-                        "color": "red"
-                    },
-                    "geometry": {
-                        "coordinates": [
-                            [
-                                [ -95.76369278221456 , 36.89647758564284 ],
-                                [ -96.08463940342189 , 37.0864765778481 ],
-                                [ -96.32251748737501 , 36.902516592240545 ],
-                                [ -96.07708771821298 , 36.61513650937147 ],
-                                [ -95.72230746199715 , 36.39661631076254 ],
-                                [ -96.0432540832045 , 36.19881192604862 ],
-                                [ -96.37175238963019 , 36.405733629764654 ],
-                                [ -96.0337611681654 , 36.175172588623354 ],
-                                [ -95.61338402508473 , 36.4277412879559 ],
-                                [ -95.91922727587924 , 36.54310196426461 ],
-                                [ -96.27038063790413 , 36.81866136354378 ],
-                                [ -95.96453738710959 , 37.03598602352001 ],
-                                [ -95.60960818248148 , 36.827728922679086 ],
-                                    [ -95.76369278221456 , 36.89647758564284 ]
-                            ]
+                            sssx
                         ],
                         "type": "Polygon"
                     },
@@ -500,79 +466,6 @@ function drawS2() {
     });
     console.log('drawB2');
 }
-
-function drawS() {
-    console.log('drawB');
-    map.addLayer({
-        'id': 'bbssx',
-        'type': 'fill-extrusion',
-        'source': {
-            'type': 'geojson',
-            'data': {
-                "features": [{
-                    "type": "Feature",
-                    "properties": {
-                        "level": 1,
-                        "name": "towerrx",
-                        "height": 111600,
-                        "base_height": 0,
-                        "color": "red"
-                    },
-                    "geometry": {
-                        "coordinates": [
-                            [
-                                [-96.58952354177613, 36.8395258646125],
-                                [-96.83205239933287, 36.98081091375451],
-                                [-97.15773400804478, 36.795147239139624],
-                                [-96.89095226473539, 36.58399766147852],
-                                [-96.61377642752878, 36.35273852801181],
-                                [-96.98796380775356, 36.199114843403834],
-                                [-97.4106569594912, 36.4057382400116],
-                                [-97.10922823653192, 36.3108711440553],
-                                [-96.8181936074699, 36.44755459926873],
-                                [-97.04686367316363, 36.572868471730615],
-                                [-97.3309689062942, 36.77572350046444],
-                                [-96.9844991097878, 36.98081091375451],
-                                [-96.6310999173575, 36.809018323587836],
-                                [-96.58952354177613, 36.8395258646125]
-                            ]
-                        ],
-                        "type": "Polygon"
-                    },
-                    "id": "08a10ab2bf15c4d14234rwecsdf2388062f7f08"
-                }],
-                "type": "FeatureCollection"
-            }
-
-        },
-        'paint': {
-            // See the Mapbox Style Spec for details on property functions
-            // https://www.mapbox.com/mapbox-gl-style-spec/#types-function
-            'fill-extrusion-color': {
-                // Get the fill-extrusion-color from the source 'color' property.
-                'property': 'color',
-                'type': 'identity'
-            },
-            'fill-extrusion-height': {
-                // Get fill-extrusion-height from the source 'height' property.
-                'property': 'height',
-                'type': 'identity'
-            },
-            'fill-extrusion-base': {
-                // Get fill-extrusion-base from the source 'base_height' property.
-                'property': 'base_height',
-                'type': 'identity'
-            },
-            // Make extrusions slightly opaque for see through indoor walls.
-            'fill-extrusion-opacity': 1
-        }
-    });
-    console.log('drawB2');
-}
-
-
-
-
 
 var colors = [
     '#ffffcc',
