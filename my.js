@@ -45,13 +45,13 @@ $(document).ready(function() {
             return;
         }
         console.log('mouseup', e.originalEvent.which);
-        // console.log(e.originalEvent.which);
-        // if (e.originalEvent.which == 1) { // left click
-        //     // createMarker(e.lngLat.lng, e.lngLat.lat);
-        // } else { // not left click
-        //     makePopupPicker(e);
-        // }
-        // console.log(map.getZoom());
+        console.log(e.originalEvent.which);
+        if (e.originalEvent.which == 1) { // left click
+            createMarker(e.lngLat.lng, e.lngLat.lat);
+        } else { // not left click
+            makePopupPicker(e);
+        }
+        console.log(map.getZoom());
     });
 
     map.on('click', function(e) {
@@ -87,6 +87,7 @@ $(document).ready(function() {
 });
 
 function createMarker(lng, lat) {
+    console.log('yoyo',lng,lat);
     // console.log('createMarker', e.lngLat.lat, e.lngLat.lng);
     let marker = getGeoJsonForMarker(lng, lat);
     // console.log('marker', marker);
@@ -96,7 +97,7 @@ function createMarker(lng, lat) {
     var el = document.createElement('div');
     el.className = 'marker';
     el.id = 'markerId_' + kounter;
-    el.style.backgroundImage = 'url(' + randomImg + ')';
+    el.style.backgroundImage = 'url(images/' + randomImg + ')';
     el.style.width = '50px';
     el.style.height = '50px';
 
