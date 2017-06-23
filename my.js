@@ -286,7 +286,6 @@ function doSpinnyThing() {
 
     miles = $('#slider1').val();
 
-
     var lnglat = map.getCenter();
 
     if (sweepDirectionClockWise) {
@@ -319,7 +318,7 @@ function doSpinnyThing() {
         }
     });
 
-    window.setTimeout(doSpinnyThing, 75);
+    window.setTimeout(doSpinnyThing, $('#slider2').val());
 
     var randomnumber = Math.floor(Math.random() * 10)
     map.setPaintProperty('triangle', 'fill-color', colors[randomnumber]);
