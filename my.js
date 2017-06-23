@@ -427,7 +427,7 @@ function drawS(sssx, idd) {
                         "level": 1,
                         "name": "towerrx",
                         "height": 250000,
-                        "base_height": 0,
+                        "base_height": 25000,
                         "color": "red"
                     },
                     "geometry": {
