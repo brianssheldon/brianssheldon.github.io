@@ -283,6 +283,9 @@ var sweepDirectionClockWise = true;
 function doSpinnyThing() {
     if (stopSweep) return;
 
+    miles = $('#slider1').val();
+
+
     var lnglat = map.getCenter();
 
     if (sweepDirectionClockWise) {
@@ -297,24 +300,25 @@ function doSpinnyThing() {
         }
     }
 
-    var newLngLat = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing);
-    var newLngLat2 = ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing + 10);
+    var arrayOfLines = [
+        [lnglat.lng, lnglat.lat]
+    ];
+
+    for (var i = 0; i < 21; i++) {
+        arrayOfLines.push(ruler.destination([lnglat.lng, lnglat.lat], miles, leftBearing + i));
+    }
 
     map.getSource('triangle').setData({
         'type': 'Feature',
         'geometry': {
             'type': 'Polygon',
             'coordinates': [
-                [
-                    [lnglat.lng, lnglat.lat],
-                    newLngLat,
-                    newLngLat2, [lnglat.lng, lnglat.lat],
-                ]
+                arrayOfLines
             ]
         }
     });
 
-    window.setTimeout(doSpinnyThing, 100);
+    window.setTimeout(doSpinnyThing, 75);
 
     var randomnumber = Math.floor(Math.random() * 10)
     map.setPaintProperty('triangle', 'fill-color', colors[randomnumber]);
@@ -414,7 +418,6 @@ var sss2 = [
 ];
 
 function drawS(sssx, idd) {
-    console.log('drawB');
     map.addLayer({
         'id': idd,
         'type': 'fill-extrusion',
@@ -426,8 +429,8 @@ function drawS(sssx, idd) {
                     "properties": {
                         "level": 1,
                         "name": "towerrx",
-                        "height": 250000,
-                        "base_height": 25000,
+                        "height": 500000,
+                        "base_height": 250000,
                         "color": "red"
                     },
                     "geometry": {
@@ -464,7 +467,6 @@ function drawS(sssx, idd) {
             'fill-extrusion-opacity': 1
         }
     });
-    console.log('drawB2');
 }
 
 var colors = [
@@ -544,3 +546,16 @@ function drawBuilding(lngg, latt) {
         }
     });
 }
+
+
+$(function() {
+    var handle = $("#custom-handle");
+    $("#slider").slider({
+        create: function() {
+            handle.text($(this).slider("value"));
+        },
+        slide: function(event, ui) {
+            handle.text(ui.value);
+        }
+    });
+});
