@@ -41,7 +41,9 @@ $(document).ready(function() {
         var zoom = map.getZoom();
         var bearing = map.getBearing();
         var pitch = map.getPitch();
-        var zoomleveldiv = 'zoom: ' + trimit(zoom) + '   bearing: ' + trimit(bearing) + '    pitch: ' + trimit(pitch) + '    time: ' + (new Date()).getTime();
+        var zoomleveldiv = 'zoom: ' + trimit(zoom) + '   bearing: '
+            + trimit(bearing) + '    pitch: ' + trimit(pitch) + '    time: '
+            + (new Date()).getTime();
         console.log(zoomleveldiv);
         $("#zoomLevel").val(zoomleveldiv);
         $("#zoomLevel").text(zoomleveldiv);
