@@ -14,22 +14,28 @@
 </head>
 
 <body>
-    <div>
-        <h1>Brian's usgs stuff using mapbox-gl.js</h1>
+    <div class="indentSome">
+        <h1 class="hheader">Brian's usgs stuff using mapbox-gl.js</h1>
+        <button onclick="doPastHour()" class="bbutton">Past Hour</button>
+        <button onclick="doPastDay()" class="bbutton">Past Day</button>
+        <button onclick="doPastWeek()" class="bbutton">Past Week</button>
+        <button onclick="doPastMonth()" class="bbutton">Past Month</button>
         <br>
-        <button onclick="doPastHour()">Past Hour</button>
-        <button onclick="doPastDay()">Past Day</button>
-        <button onclick="doPastWeek()">Past Week</button>
-        <button onclick="doPastMonth()">Past Month</button>
-        <button id="stopSweep" onclick="doStopSweep()">Stop Sweep</button>
-        <input id="slider1" type="range" min="10" max="500" step="1" value="10">length</input>
-        <input id="slider2" type="range" min="10" max="500" step="1" value="10">pause</input>
+        <button id="stopSweep" onclick="doStopSweep()" class="bbutton">Stop Sweep</button>
+        <br>
+        <input id="slider1" type="range" min="10" max="500" step="1" value="10" class="bbutton" class="bbutton">length</input>
+        <br>
+        <input id="slider2" type="range" min="10" max="500" step="1" value="10" class="bbutton">pause</input>
         <div id="howMany"></div>
         <br>
     </div>
 
     <div id='map'></div>
     <div id='popup'></div>
+
+    <div style="position:fixed; top: 98%; z-index: 25;">
+        <div id='zoomLevel' style="width: 33%; z-index: 123; display: table-cell;"></div>
+    </div>
 </body>
 
 </html>

@@ -38,6 +38,14 @@ $(document).ready(function() {
 
     map.on('mouseup', function(e) {
         console.log('[', e.lngLat.lng, ',', e.lngLat.lat, '],');
+        var zoom = map.getZoom();
+        var bearing = map.getBearing();
+        var pitch = map.getPitch();
+        var zoomleveldiv = 'zoom: ' + trimit(zoom) + '   bearing: ' + trimit(bearing) + '    pitch: ' + trimit(pitch) + '    time: ' + (new Date()).getTime();
+        console.log(zoomleveldiv);
+        $("#zoomLevel").val(zoomleveldiv);
+        $("#zoomLevel").text(zoomleveldiv);
+
         closePopup();
         if (dragAndDropped) {
             dragAndDropped = false;
@@ -51,7 +59,6 @@ $(document).ready(function() {
         } else { // not left click
             makePopupPicker(e);
         }
-        console.log(map.getZoom());
     });
 
     map.on('click', function(e) {
@@ -85,6 +92,11 @@ $(document).ready(function() {
     // adds a navigation button that resets the view back to where it started
     $('.mapboxgl-ctrl-group').append(navigationHtml);
 });
+
+function trimit(x){
+    if(x && x.length > 4) return x.substring(0,4);
+    return x;
+}
 
 function createMarker(lng, lat) {
     console.log('yoyo',lng,lat);
