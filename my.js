@@ -26,7 +26,7 @@ $(document).ready(function() {
 
         doPastMonth();
         addTriangle();
-
+        // drawCircle();
     });
     map.on('rotate', function(e) {
         dragAndDropped = true;
@@ -255,7 +255,7 @@ function updateMap(theurl) {
         "source": "eqid",
         "paint": {
             "circle-radius": 15,
-            "circle-color": "lightgreen"
+            "circle-color": "red"
         }
     });
     var bbb = map.getLayer('eqidlayer');
@@ -277,7 +277,7 @@ function updateMap(theurl) {
     });
 }
 
-var stopSweep = false;
+var stopSweep = true;
 
 function doStopSweep() {
     if (stopSweep) {
@@ -559,4 +559,45 @@ function drawBuilding(lngg, latt) {
             'fill-extrusion-opacity': 1
         }
     });
+}
+
+function drawCircle(){
+
+        map.addLayer({
+            'id': 'population',
+            'type': 'circle',
+            'source': {
+                'type': 'geojson',
+                'data': {
+                    'type': 'Feature',
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [
+                                -97.51239873448141, 35.52814112741868
+                        ]
+                    }
+                }
+            },
+            // 'source-layer': 'asdfafsd',
+            'paint': {
+                // make circles larger as the user zooms from z12 to z22
+                'circle-radius': 33,
+                // color circles by ethnicity, using data-driven styles
+                'circle-color': 'red'
+                // {
+                //     property: 'ethnicity',
+                //     type: 'categorical',
+                //     stops: [
+                //         ['White', '#fbb03b'],
+                //         ['Black', '#223b53'],
+                //         ['Hispanic', '#e55e5e'],
+                //         ['Asian', '#3bb2d0'],
+                //         ['Other', '#ccc']]
+                // }
+                // 'fill-extrusion-color':'green',
+                // 'fill-extrusion-height': 111000,
+                // 'fill-extrusion-base': 2000,
+                // 'fill-extrusion-opacity': 1
+            }
+        });
 }
