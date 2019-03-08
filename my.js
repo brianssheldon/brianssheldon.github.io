@@ -604,6 +604,11 @@ function drawCircle(){
 
 function doTTT(){
     alert("BOO!");
+    
+    document.getElementById("line1").show();
+    document.getElementById("line2").show();
+    
+    
     try{
         var c=document.getElementById("line1");
         
