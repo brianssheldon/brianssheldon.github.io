@@ -601,3 +601,7 @@ function drawCircle(){
             }
         });
 }
+
+function doTTT(){
+ alert("BOO!");   
+}
