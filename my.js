@@ -95,8 +95,8 @@ $(document).ready(function() {
     $('.mapboxgl-ctrl-group').append(navigationHtml);
     
     
-    document.getElementById("line1").hide();
-    document.getElementById("line2").hide();
+    document.getElementById("line1").style.display = "none";
+    document.getElementById("line2").style.display = "none";
 });
 
 function trimit(x){
@@ -609,9 +609,8 @@ function drawCircle(){
 function doTTT(){
     alert("BOO!");
     
-    document.getElementById("line1").show();
-    document.getElementById("line2").show();
-    
+    document.getElementById("line1").style.display = "inline";
+    document.getElementById("line2").style.display = "inline";
     
     try{
         var c=document.getElementById("line1");
