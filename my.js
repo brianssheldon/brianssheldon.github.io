@@ -624,6 +624,6 @@ function doTTT(){
     alert("BO77O!");
         ctx.stroke();
     alert("BO888888O!");
-    }catch(e){alert(e);}
+    }catch(e){alert("aaaa ", e, "bbbbb");}
     alert("BO44444O2!");
 }
