@@ -50,3 +50,33 @@ body {
 .indentSome{
     margin: 25px;
 }
+
+.line {
+  position: absolute;
+  background-color: #000000;
+}
+
+.vertical { 
+   width: 1px;
+   height: 500px;
+}
+
+.horizontal {
+   width: 500px;
+   height: 1px;
+}
+
+#line1 {
+   top: 20px;
+   left: 50%;
+}
+
+#line2 {
+   top: 260px;
+   left: 25%;
+}
+
+/* for added rotation effects */
+.forty-five {
+   transform: rotate(45deg);
+}
