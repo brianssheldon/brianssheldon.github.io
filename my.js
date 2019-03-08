@@ -613,4 +613,5 @@ function doTTT(){
     ctx.lineWidth = 10;
     ctx.stroke();
     
+    alert("BOO2!");
 }
