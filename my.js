@@ -93,6 +93,10 @@ $(document).ready(function() {
         ' title="Reset map back to original view. Hot key: <alt> h"><span class="arrow";"></span></button>';
     // adds a navigation button that resets the view back to where it started
     $('.mapboxgl-ctrl-group').append(navigationHtml);
+    
+    
+    document.getElementById("line1").hide();
+    document.getElementById("line2").hide();
 });
 
 function trimit(x){
