@@ -604,7 +604,7 @@ function drawCircle(){
 
 function doTTT(){
     alert("BOO!");
-    
+    try{
     var c=document.getElementById("line1");
     var ctx=c.getContext("2d");
     ctx.beginPath();
@@ -612,6 +612,6 @@ function doTTT(){
     ctx.lineTo(300,500);
     ctx.lineWidth = 10;
     ctx.stroke();
-    
+    }catch(e){alert(e);}
     alert("BOO2!");
 }
