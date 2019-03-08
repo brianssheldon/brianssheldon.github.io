@@ -610,9 +610,12 @@ function doTTT(){
     alert("BO2O!");
         var ctx=c.getContext("2d");
  
-    alert("B3OO!");       ctx.beginPath();
+    alert("B3OO!");      
+        
+        ctx.beginPath();
         
     alert("BO4O!");
+        
         ctx.moveTo(0,0);
         ctx.lineTo(300,500);
         ctx.lineWidth = 10;
