@@ -607,23 +607,20 @@ function doTTT(){
     try{
         var c=document.getElementById("line1");
         
-    alert("BO2O!");
         var ctx=c.getContext("2d");
- 
-    alert("B3OO!");      
         
         ctx.beginPath();
         
-    alert("BO4O!");
-        
-        ctx.moveTo(0,0);
-    alert("B55O!");
-        ctx.lineTo(300,500);
-    alert("BO66O!");
-        ctx.lineWidth = 10;
-    alert("BO77O!");
+        ctx.moveTo(100,100);
+        ctx.lineTo(3000,5000);
+        ctx.lineWidth = 100;
         ctx.stroke();
-    alert("BO888888O!");
+        
+        
+        ctx.strokeRect(20, 20, 80, 100);
+        
+        
     }catch(e){alert("aaaa ", e, "bbbbb");}
+    
     alert("BO44444O2!");
 }
