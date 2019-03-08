@@ -609,7 +609,7 @@ function doTTT(){
     var ctx=c.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(0,0);
-    ctx.lineTo(300,150);
+    ctx.lineTo(300,500);
     ctx.lineWidth = 10;
     ctx.stroke();
     
