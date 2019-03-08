@@ -617,9 +617,13 @@ function doTTT(){
     alert("BO4O!");
         
         ctx.moveTo(0,0);
+    alert("B55O!");
         ctx.lineTo(300,500);
+    alert("BO66O!");
         ctx.lineWidth = 10;
+    alert("BO77O!");
         ctx.stroke();
+    alert("BO888888O!");
     }catch(e){alert(e);}
     alert("BO44444O2!");
 }
