@@ -605,13 +605,18 @@ function drawCircle(){
 function doTTT(){
     alert("BOO!");
     try{
-    var c=document.getElementById("line1");
-    var ctx=c.getContext("2d");
-    ctx.beginPath();
-    ctx.moveTo(0,0);
-    ctx.lineTo(300,500);
-    ctx.lineWidth = 10;
-    ctx.stroke();
+        var c=document.getElementById("line1");
+        
+    alert("BO2O!");
+        var ctx=c.getContext("2d");
+ 
+    alert("B3OO!");       ctx.beginPath();
+        
+    alert("BO4O!");
+        ctx.moveTo(0,0);
+        ctx.lineTo(300,500);
+        ctx.lineWidth = 10;
+        ctx.stroke();
     }catch(e){alert(e);}
-    alert("BOO2!");
+    alert("BO44444O2!");
 }
