@@ -612,23 +612,23 @@ function doTTT(){
     document.getElementById("line1").style.display = "inline";
     document.getElementById("line2").style.display = "inline";
     
-    try{
-        var c=document.getElementById("line1");
+//     try{
+//         var c=document.getElementById("line1");
         
-        var ctx=c.getContext("2d");
+//         var ctx=c.getContext("2d");
         
-        ctx.beginPath();
+//         ctx.beginPath();
         
-        ctx.moveTo(100,100);
-        ctx.lineTo(3000,5000);
-        ctx.lineWidth = 100;
-        ctx.stroke();
-        
-        
-        ctx.strokeRect(20, 20, 80, 100);
+//         ctx.moveTo(100,100);
+//         ctx.lineTo(3000,5000);
+//         ctx.lineWidth = 100;
+//         ctx.stroke();
         
         
-    }catch(e){alert("aaaa ", e, "bbbbb");}
+//         ctx.strokeRect(20, 20, 80, 100);
+        
+        
+//     }catch(e){alert("aaaa ", e, "bbbbb");}
     
     alert("BO44444O2!");
 }
