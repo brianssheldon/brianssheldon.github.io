@@ -54,7 +54,7 @@ body {
 .line {
   position: absolute;
   background-color: #000000;
-    border: 10px solid red;
+  border: 10px solid black;
 }
 
 .vertical { 
