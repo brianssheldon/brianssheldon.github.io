@@ -77,6 +77,16 @@ body {
    left: 25%;
 }
 
+#line3 {
+   top: 20px;
+   left: 50%;
+}
+
+#line4 {
+   top: 260px;
+   left: 25%;
+}
+
 /* for added rotation effects */
 .forty-five {
    transform: rotate(45deg);
