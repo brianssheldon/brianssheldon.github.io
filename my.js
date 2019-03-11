@@ -8,6 +8,7 @@ var dragAndDropped = false;
 var miles = 10;
 var leftBearing = 3;
 var ruler;
+var tttison = true;
 
 $(document).ready(function() {
     console.log('in ready');
@@ -99,6 +100,7 @@ $(document).ready(function() {
     document.getElementById("line2").style.display = "none";
     document.getElementById("line3").style.display = "none";
     document.getElementById("line4").style.display = "none";
+    tttison = false;
 });
 
 function trimit(x){
@@ -611,10 +613,18 @@ function drawCircle(){
 function doTTT(){
     alert("BOO!");
     
-    document.getElementById("line1").style.display = "inline";
-    document.getElementById("line2").style.display = "inline";
-    document.getElementById("line3").style.display = "inline";
-    document.getElementById("line4").style.display = "inline";
-    
+    if(tttison){
+        document.getElementById("line1").style.display = "none";
+        document.getElementById("line2").style.display = "none";
+        document.getElementById("line3").style.display = "none";
+        document.getElementById("line4").style.display = "none";
+        tttison = false;
+    }else{
+        document.getElementById("line1").style.display = "inline";
+        document.getElementById("line2").style.display = "inline";
+        document.getElementById("line3").style.display = "inline";
+        document.getElementById("line4").style.display = "inline";
+        tttison = true;
+    }
 
 }
