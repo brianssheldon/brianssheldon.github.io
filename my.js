@@ -97,6 +97,8 @@ $(document).ready(function() {
     
     document.getElementById("line1").style.display = "none";
     document.getElementById("line2").style.display = "none";
+    document.getElementById("line3").style.display = "none";
+    document.getElementById("line4").style.display = "none";
 });
 
 function trimit(x){
@@ -630,5 +632,5 @@ function doTTT(){
         
 //     }catch(e){alert("aaaa ", e, "bbbbb");}
     
-    alert("BO44444O2!");
+//     alert("BO44444O2!");
 }
