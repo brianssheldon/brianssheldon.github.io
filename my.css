@@ -70,24 +70,38 @@ body {
    top: 20px;
    left: 50%;
   border: 10px solid black;
+    
+  position: fixed;
+  bottom: 80;
+  right: 80;
 }
 
 #line2 {
    top: 260px;
    left: 25%;
   border: 10px solid green;
+    
+  position: fixed;
+  bottom: 100;
+  right: 100;
 }
 
 #line3 {
    top: 20px;
    left: 50%;
   border: 10px solid orange;
+  position: fixed;
+  bottom: 150;
+  right: 150;
 }
 
 #line4 {
    top: 260px;
    left: 25%;
   border: 10px solid red;
+  position: fixed;
+  bottom: 200;
+  right: 200;
 }
 
 /* for added rotation effects */
