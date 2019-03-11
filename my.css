@@ -52,7 +52,7 @@ body {
 }
 
 .line {
-  position: absolute;
+/*   position: absolute; */
   background-color: #000000;
 }
 
