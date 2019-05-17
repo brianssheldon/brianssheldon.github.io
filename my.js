@@ -388,9 +388,9 @@ function addTriangle() {
     drawBuilding(-97.4297454357804, 35.332845123425);
     drawBuilding(-97.73882483561242, 35.37299595493684);
 
-    drawS(bbb, 'idbbb');
-    drawS(sss, 'idssss');
-    drawS(sss2, 'idssss2');
+//     drawS(bbb, 'idbbb');
+//     drawS(sss, 'idssss');
+//     drawS(sss2, 'idssss2');
 }
 
 var bbb = [
